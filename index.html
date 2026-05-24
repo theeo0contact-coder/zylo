@@ -16,28 +16,22 @@
 <p>Zylos Raketer • Minecraft Shop</p>
 </header>
 
+<!-- TAB NAV -->
+<div class="tabs">
+
+<button onclick="openTab('product')">💥 Zylos Raketer</button>
+<button onclick="openTab('order')">🛒 Beställning</button>
+
+</div>
+
 <main>
 
-<!-- PRODUKT -->
-<section class="product-card" onclick="openProduct()">
+<!-- PRODUCT TAB -->
+<section id="product" class="tab active">
 
 <h2>💥 Zylos Raketer</h2>
 
 <p>Elytra-raketer för snabb flygning</p>
-
-<div class="tag">Klicka för info</div>
-
-</section>
-
-<!-- PRODUCT PAGE -->
-<section id="productPage" class="hidden panel">
-
-<h2>💥 Zylos Raketer</h2>
-
-<p>
-Perfekta för Elytra-flygning på Moobster SMP.
-Snabba, billiga och stabila.
-</p>
 
 <div class="coords">
 📍 Cords: -146 68 63
@@ -65,9 +59,14 @@ Snabba, billiga och stabila.
 
 </div>
 
-<hr>
+</section>
 
-<h3>🛒 Beställning</h3>
+<!-- ORDER TAB (PINNED / FAST) -->
+<section id="order" class="tab">
+
+<h2>🛒 Beställning (Zylo Shop)</h2>
+
+<p>Beställ Zylos Raketer här</p>
 
 <input id="discordName" placeholder="Discord namn">
 <input id="mcName" placeholder="Minecraft namn">
@@ -76,7 +75,10 @@ Snabba, billiga och stabila.
 
 <button onclick="submitOrder()">Skicka beställning</button>
 
-<button class="back" onclick="closeProduct()">⬅ Tillbaka</button>
+<p class="note">
+⚠️ OBS! Beställningen måste granskas av Zylo teamet.
+Du får DM om vi kan fixa detta.
+</p>
 
 </section>
 
