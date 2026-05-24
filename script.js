@@ -1,98 +1,108 @@
 let stars = 5;
+let reviews = [];
 
-const webhookURL = "https://discordapp.com/api/webhooks/1508170237080637550/13HyxB90DlBXZ3Rx8eDjsT_Niz4W9lJZQ1FDV5J7tsm6vCc2cgQWWEa5GxlswUpMA8JF";
+const webhookURL =
+"https://discordapp.com/api/webhooks/1508170237080637550/13HyxB90DlBXZ3Rx8eDjsT_Niz4W9lJZQ1FDV5J7tsm6vCc2cgQWWEa5GxlswUpMA8JF";
+
+let isAdmin = false;
+
+function openProduct() {
+document.getElementById("productPage").classList.remove("hidden");
+}
+
+function closeProduct() {
+document.getElementById("productPage").classList.add("hidden");
+}
 
 function rate(value) {
-
 stars = value;
-
-alert(
-"Du valde " + value + " stjärnor"
-);
-
+alert("Du valde " + value + " stjärnor");
 }
 
 function leaveReview() {
 
-let text =
-document.getElementById("reviewText").value;
+let text = document.getElementById("reviewText").value;
 
-let box =
-document.getElementById("reviewList");
+if (!text) return;
 
-box.innerHTML += `
+reviews.push({ stars, text });
 
-<div class="review">
+renderReviews();
 
-${"⭐".repeat(stars)}
-
-<br><br>
-
-${text}
-
-</div>
-
-`;
-
+document.getElementById("reviewText").value = "";
 }
 
-function openOrder() {
+function renderReviews() {
 
-document
-.getElementById("orderMenu")
-.classList
-.remove("hidden");
+let box = document.getElementById("reviewList");
+box.innerHTML = "";
 
+let totalStars = 0;
+
+reviews.forEach(r => {
+
+totalStars += r.stars;
+
+box.innerHTML += `
+<div class="review">
+${"⭐".repeat(r.stars)}
+<br><br>
+${r.text}
+</div>
+`;
+
+});
+
+let avg = reviews.length ? (totalStars / reviews.length).toFixed(1) : 0;
+
+document.getElementById("reviewStats").innerText =
+`⭐ Genomsnitt: ${avg} | Reviews: ${reviews.length}`;
 }
 
 function submitOrder() {
 
-let discordName =
-document.getElementById("discordName").value;
+let discordName = document.getElementById("discordName").value;
+let mcName = document.getElementById("mcName").value;
+let amount = document.getElementById("amount").value;
+let deadline = document.getElementById("deadline").value;
 
-let mcName =
-document.getElementById("mcName").value;
-
-let block =
-document.getElementById("blockSelect").value;
-
-let amount =
-document.getElementById("amount").value;
-
-let deadline =
-document.getElementById("deadline").value;
-
-// kontroll
-if (!discordName || !mcName || !block || !amount || !deadline) {
+if (!discordName || !mcName || !amount || !deadline) {
 alert("Fyll i alla fält!");
 return;
 }
 
-let message = {
-content:
+let msg =
 `🚀 NY BESTÄLLNING 🚀
 
 Discord: ${discordName}
 Minecraft: ${mcName}
-Beställning: ${amount}x ${block}
-Behövs senast: ${deadline}
+Produkt: Zylos Raketer
+Antal: ${amount}
+Deadline: ${deadline}
 
-⚠️ OBS! Beställningen måste granskas av Zylo teamet, du får ett DM om vi kan fixa detta.`
-};
+⚠️ OBS! Beställningen måste granskas av Zylo teamet.`;
 
 fetch(webhookURL, {
 method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify(message)
-})
-.then(() => {
-alert("Beställning skickad!");
-document.getElementById("orderMenu").classList.add("hidden");
-})
-.catch(() => {
-alert("Något gick fel vid beställningen.");
+headers: {"Content-Type": "application/json"},
+body: JSON.stringify({ content: msg })
 });
+
+alert("Beställning skickad!");
+}
+
+function verifyAdmin() {
+
+let code = document.getElementById("adminCode").value;
+
+// enkel demo admin system
+if (code === "ZyloAdmin123") {
+isAdmin = true;
+document.getElementById("adminStatus").innerText =
+"✅ Admin verifierad!";
+} else {
+document.getElementById("adminStatus").innerText =
+"❌ Fel kod";
+}
 
 }
