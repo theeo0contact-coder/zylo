@@ -1,72 +1,97 @@
-body{
-background:#111;
-color:white;
-
-font-family:Arial;
-
-text-align:center;
-
-margin:0;
+body {
+margin: 0;
+font-family: Arial;
+background: #0f0f0f;
+color: white;
 }
 
-header{
-
-padding:40px;
-
-background:#1e1e1e;
-
+.topbar {
+background: #1f8b4c;
+padding: 20px;
+text-align: center;
+border-bottom: 4px solid #0a5a2a;
 }
 
-.shop{
-
-padding:30px;
-
+.product-card {
+background: #2c2c2c;
+margin: 20px;
+padding: 20px;
+border: 2px solid #444;
+cursor: pointer;
+border-radius: 10px;
+transition: 0.2s;
 }
 
-.shop-image{
-
-width:500px;
-
-max-width:90%;
-
-border-radius:15px;
-
+.product-card:hover {
+transform: scale(1.02);
+border-color: #1f8b4c;
 }
 
-button{
-
-padding:12px 22px;
-
-background:#0fd95a;
-
-border:none;
-
-cursor:pointer;
-
-margin:10px;
-
+.tag {
+margin-top: 10px;
+font-size: 12px;
+opacity: 0.7;
 }
 
-textarea{
-
-width:80%;
-
-height:100px;
-
+.panel {
+background: #1a1a1a;
+margin: 20px;
+padding: 20px;
+border-radius: 10px;
+border: 2px solid #333;
 }
 
-.hidden{
-
-display:none;
-
+.hidden {
+display: none;
 }
 
-.review{
+.coords {
+background: #111;
+padding: 10px;
+margin: 10px 0;
+border-left: 4px solid #1f8b4c;
+}
 
-background:#222;
+textarea, input {
+width: 100%;
+padding: 10px;
+margin: 5px 0;
+background: #111;
+border: 1px solid #333;
+color: white;
+border-radius: 5px;
+}
 
-margin:10px;
+button {
+background: #1f8b4c;
+border: none;
+padding: 10px;
+color: white;
+cursor: pointer;
+margin-top: 5px;
+border-radius: 5px;
+}
 
-padding:10px;
+button:hover {
+background: #25a85c;
+}
 
+.back {
+background: #444;
+}
+
+.reviewBox {
+margin-top: 20px;
+}
+
+#stars span {
+cursor: pointer;
+font-size: 20px;
+}
+
+.review {
+background: #111;
+padding: 10px;
+margin-top: 10px;
+border-left: 3px solid gold;
 }
