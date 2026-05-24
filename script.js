@@ -4,14 +4,14 @@ let reviews = [];
 const webhookURL =
 "https://discordapp.com/api/webhooks/1508170237080637550/13HyxB90DlBXZ3Rx8eDjsT_Niz4W9lJZQ1FDV5J7tsm6vCc2cgQWWEa5GxlswUpMA8JF";
 
-let isAdmin = false;
+function openTab(tabName) {
 
-function openProduct() {
-document.getElementById("productPage").classList.remove("hidden");
-}
+let tabs = document.querySelectorAll(".tab");
 
-function closeProduct() {
-document.getElementById("productPage").classList.add("hidden");
+tabs.forEach(t => t.classList.remove("active"));
+
+document.getElementById(tabName).classList.add("active");
+
 }
 
 function rate(value) {
@@ -37,11 +37,11 @@ function renderReviews() {
 let box = document.getElementById("reviewList");
 box.innerHTML = "";
 
-let totalStars = 0;
+let total = 0;
 
 reviews.forEach(r => {
 
-totalStars += r.stars;
+total += r.stars;
 
 box.innerHTML += `
 <div class="review">
@@ -53,10 +53,10 @@ ${r.text}
 
 });
 
-let avg = reviews.length ? (totalStars / reviews.length).toFixed(1) : 0;
+let avg = reviews.length ? (total / reviews.length).toFixed(1) : 0;
 
 document.getElementById("reviewStats").innerText =
-`⭐ Genomsnitt: ${avg} | Reviews: ${reviews.length}`;
+`⭐ Snitt: ${avg} | Reviews: ${reviews.length}`;
 }
 
 function submitOrder() {
@@ -95,9 +95,7 @@ function verifyAdmin() {
 
 let code = document.getElementById("adminCode").value;
 
-// enkel demo admin system
 if (code === "ZyloAdmin123") {
-isAdmin = true;
 document.getElementById("adminStatus").innerText =
 "✅ Admin verifierad!";
 } else {
