@@ -11,95 +11,88 @@
 
 <body>
 
-<header>
+<header class="topbar">
 <h1>🚀 Zylo</h1>
-<p>Moobster SMP • Zylos Raketer</p>
+<p>Zylos Raketer • Minecraft Shop</p>
 </header>
 
-<section class="shop">
+<main>
 
-<img src="images/rockets.png" class="shop-image">
+<!-- PRODUKT -->
+<section class="product-card" onclick="openProduct()">
 
-<h2>Zylos Raketer</h2>
+<h2>💥 Zylos Raketer</h2>
 
-<p>
-Säljer raketer för Elytra-flygning.
-</p>
+<p>Elytra-raketer för snabb flygning</p>
 
-<div class="coords">
-📍 Cords:
-X: 123
-Y: 64
-Z: -543
-</div>
-
-<button onclick="openOrder()">
-Beställ
-</button>
+<div class="tag">Klicka för info</div>
 
 </section>
 
-<section>
+<!-- PRODUCT PAGE -->
+<section id="productPage" class="hidden panel">
 
-<h2>⭐ Reviews</h2>
+<h2>💥 Zylos Raketer</h2>
+
+<p>
+Perfekta för Elytra-flygning på Moobster SMP.
+Snabba, billiga och stabila.
+</p>
+
+<div class="coords">
+📍 Cords: -146 68 63
+</div>
+
+<div class="reviewBox">
+
+<h3>⭐ Reviews</h3>
 
 <div id="stars">
-
 <span onclick="rate(1)">⭐</span>
 <span onclick="rate(2)">⭐</span>
 <span onclick="rate(3)">⭐</span>
 <span onclick="rate(4)">⭐</span>
 <span onclick="rate(5)">⭐</span>
-
 </div>
 
-<textarea
-id="reviewText"
-placeholder="Skriv review">
-</textarea>
+<textarea id="reviewText" placeholder="Skriv review"></textarea>
 
-<button onclick="leaveReview()">
-Lämna review
-</button>
+<button onclick="leaveReview()">Lämna review</button>
+
+<p id="reviewStats"></p>
 
 <div id="reviewList"></div>
 
+</div>
+
+<hr>
+
+<h3>🛒 Beställning</h3>
+
+<input id="discordName" placeholder="Discord namn">
+<input id="mcName" placeholder="Minecraft namn">
+<input id="amount" type="number" placeholder="Antal">
+<input id="deadline" placeholder="Behövs senast">
+
+<button onclick="submitOrder()">Skicka beställning</button>
+
+<button class="back" onclick="closeProduct()">⬅ Tillbaka</button>
+
 </section>
 
-<div id="orderMenu" class="hidden">
+<!-- ADMIN -->
+<section class="panel">
 
-<h2>Beställning</h2>
+<h3>🔐 Admin verify</h3>
 
-<input
-id="discordName"
-type="text"
-placeholder="Discord Namn">
+<input id="adminCode" placeholder="Admin kod">
+<button onclick="verifyAdmin()">Verifiera</button>
 
-<input
-id="mcName"
-type="text"
-placeholder="Minecraft Namn">
+<p id="adminStatus"></p>
 
-<input
-id="blockSelect"
-type="text"
-placeholder="Vad vill du beställa?">
+</section>
 
-<input
-id="amount"
-type="number"
-placeholder="Antal">
-
-<input
-id="deadline"
-type="text"
-placeholder="När behöver du det senast?">
-
-<button onclick="submitOrder()">
-Skicka beställning
-</button>
-
-</div>
+</main>
 
 <script src="script.js"></script>
 
