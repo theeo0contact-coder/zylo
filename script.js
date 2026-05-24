@@ -61,12 +61,17 @@ document.getElementById("reviewStats").innerText =
 
 function submitOrder() {
 
+let dropdownItem = document.getElementById("itemSelect").value;
+let customItem = document.getElementById("customItem").value;
+
+let item = customItem || dropdownItem;
+
 let discordName = document.getElementById("discordName").value;
 let mcName = document.getElementById("mcName").value;
 let amount = document.getElementById("amount").value;
 let deadline = document.getElementById("deadline").value;
 
-if (!discordName || !mcName || !amount || !deadline) {
+if (!item || !discordName || !mcName || !amount || !deadline) {
 alert("Fyll i alla fält!");
 return;
 }
@@ -76,7 +81,7 @@ let msg =
 
 Discord: ${discordName}
 Minecraft: ${mcName}
-Produkt: Zylos Raketer
+Produkt: ${item}
 Antal: ${amount}
 Deadline: ${deadline}
 
@@ -89,6 +94,7 @@ body: JSON.stringify({ content: msg })
 });
 
 alert("Beställning skickad!");
+
 }
 
 function verifyAdmin() {
