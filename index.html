@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Zylo | Moobster SMP</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>🚀 Zylo</h1>
+<p>Moobster SMP • Zylos Raketer</p>
+</header>
+
+<section class="shop">
+
+<img src="images/rockets.png" class="shop-image">
+
+<h2>Zylos Raketer</h2>
+
+<p>
+Säljer raketer för Elytra-flygning.
+</p>
+
+<div class="coords">
+📍 Cords:
+X: 123
+Y: 64
+Z: -543
+</div>
+
+<button onclick="openOrder()">
+Beställ
+</button>
+
+</section>
+
+<section>
+
+<h2>⭐ Reviews</h2>
+
+<div id="stars">
+
+<span onclick="rate(1)">⭐</span>
+<span onclick="rate(2)">⭐</span>
+<span onclick="rate(3)">⭐</span>
+<span onclick="rate(4)">⭐</span>
+<span onclick="rate(5)">⭐</span>
+
+</div>
+
+<textarea
+id="reviewText"
+placeholder="Skriv review">
+</textarea>
+
+<button onclick="leaveReview()">
+Lämna review
+</button>
+
+<div id="reviewList"></div>
+
+</section>
+
+<div id="orderMenu" class="hidden">
+
+<h2>Beställ block</h2>
+
+<select id="blockSelect">
+
+<option>Firework Rocket</option>
+<option>Stone</option>
+<option>Oak Planks</option>
+<option>Diamond Block</option>
+
+</select>
+
+<input
+id="amount"
+type="number"
+placeholder="Antal">
+
+<button onclick="submitOrder()">
+Skicka beställning
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
