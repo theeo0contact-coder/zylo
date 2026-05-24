@@ -68,21 +68,32 @@ Lämna review
 
 <div id="orderMenu" class="hidden">
 
-<h2>Beställ block</h2>
+<h2>Beställning</h2>
 
-<select id="blockSelect">
+<input
+id="discordName"
+type="text"
+placeholder="Discord Namn">
 
-<option>Firework Rocket</option>
-<option>Stone</option>
-<option>Oak Planks</option>
-<option>Diamond Block</option>
+<input
+id="mcName"
+type="text"
+placeholder="Minecraft Namn">
 
-</select>
+<input
+id="blockSelect"
+type="text"
+placeholder="Vad vill du beställa?">
 
 <input
 id="amount"
 type="number"
 placeholder="Antal">
+
+<input
+id="deadline"
+type="text"
+placeholder="När behöver du det senast?">
 
 <button onclick="submitOrder()">
 Skicka beställning
