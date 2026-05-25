@@ -1,103 +1,170 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Zylo | Moobster SMP</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="style.css">
+<title>Zylo</title>
+
+<link
+rel="stylesheet"
+href="style.css">
+
 </head>
 
 <body>
 
-<header class="topbar">
-<h1>🚀 Zylo</h1>
-<p>Zylos Raketer • Minecraft Shop</p>
+<header>
+
+<h1>🚀 ZYLO</h1>
+
+<p>
+Minecraft Shop
+</p>
+
 </header>
 
-<!-- TAB NAV -->
-<div class="tabs">
+<div class="mc-menu">
 
-<button onclick="openTab('product')">💥 Zylos Raketer</button>
-<button onclick="openTab('order')">🛒 Beställning</button>
+<button onclick="openTab('product')">
+💥 Zylos Raketer
+</button>
+
+<button onclick="openTab('order')">
+🛒 Beställning
+</button>
 
 </div>
 
-<main>
+<!-- PRODUKT -->
 
-<!-- PRODUCT TAB -->
-<section id="product" class="tab active">
+<section
+id="product"
+class="tab">
 
-<h2>💥 Zylos Raketer</h2>
-
-<p>Elytra-raketer för snabb flygning</p>
+<h2>
+💥 Zylos Raketer
+</h2>
 
 <div class="coords">
-📍 Cords: -146 68 63
+
+📍 Cords
+
+-146 68 63
+
 </div>
 
-<div class="reviewBox">
-
-<h3>⭐ Reviews</h3>
+<h3>
+Reviews
+</h3>
 
 <div id="stars">
+
 <span onclick="rate(1)">⭐</span>
 <span onclick="rate(2)">⭐</span>
 <span onclick="rate(3)">⭐</span>
 <span onclick="rate(4)">⭐</span>
 <span onclick="rate(5)">⭐</span>
+
 </div>
 
-<textarea id="reviewText" placeholder="Skriv review"></textarea>
+<textarea
+id="reviewText"
+placeholder="Skriv review">
+</textarea>
 
-<button onclick="leaveReview()">Lämna review</button>
+<button onclick="leaveReview()">
 
-<p id="reviewStats"></p>
+Skicka review
+
+</button>
+
+<div id="reviewStats"></div>
 
 <div id="reviewList"></div>
 
-</div>
-
 </section>
 
-<!-- ORDER TAB (PINNED / FAST) -->
-<section id="order" class="tab">
+<!-- ORDER -->
 
-<h2>🛒 Beställning (Zylo Shop)</h2>
+<section
+id="order"
+class="tab">
 
-<!-- fri text -->
-<input id="customItem" placeholder="Skriv din beställning.">
+<h2>
 
-<input id="discordName" placeholder="Discord namn">
-<input id="mcName" placeholder="Minecraft namn">
-<input id="amount" type="number" placeholder="Antal">
-<input id="deadline" placeholder="Behövs senast">
+🛒 Beställning
 
-<button onclick="submitOrder()">Skicka beställning</button>
+</h2>
 
-<p class="note">
-⚠️ OBS! Beställningen måste granskas av Zylo teamet.
-Du får DM om vi kan fixa detta.
+<p>
+
+Vald:
+
+<b id="selectedItem">
+
+Firework Rocket
+
+</b>
+
 </p>
 
+<select id="itemSelect">
+
+<option>
+Firework Rocket
+</option>
+
+<option>
+Diamond
+</option>
+
+<option>
+Netherite
+</option>
+
+<option>
+Elytra Repair
+</option>
+
+</select>
+
+<input
+id="customItem"
+placeholder="Skriv vad du vill beställa">
+
+<input
+id="discordName"
+placeholder="Discord namn">
+
+<input
+id="mcName"
+placeholder="Minecraft namn">
+
+<input
+id="amount"
+type="number"
+placeholder="Antal">
+
+<input
+id="deadline"
+placeholder="När behövs det">
+
+<button onclick="submitOrder()">
+
+✔ Skicka
+
+</button>
+
 </section>
-
-<!-- ADMIN -->
-<section class="panel">
-
-<h3>🔐 Admin verify</h3>
-
-<input id="adminCode" placeholder="Admin kod">
-<button onclick="verifyAdmin()">Verifiera</button>
-
-<p id="adminStatus"></p>
-
-</section>
-
-</main>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
