@@ -1,79 +1,110 @@
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zylo - Minecraft Hub</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+const API_URL = "https://YOUR_API_URL_HERE"; // byt senare
 
-<div class="bg"></div>
+let reviews = [];
 
-<header>
-  <h1>⛏ ZYLO HUB</h1>
-  <p>Minecraft-inspirerad beställning & reviews</p>
-</header>
+/* =========================
+   INIT
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  loadReviews();
+});
 
-<nav>
-  <button onclick="toggleDropdown()">☰ Meny</button>
-  <div id="dropdown" class="dropdown hidden">
-    <button onclick="openSection('raketer')">Zylos Raketer</button>
-    <button onclick="openSection('order')">Beställning</button>
-    <button onclick="openSection('reviews')">Reviews</button>
-  </div>
-</nav>
+/* =========================
+   MENU SYSTEM
+========================= */
+function toggleDropdown() {
+  document.getElementById("dropdown").classList.toggle("hidden");
+  closeAllSections();
+}
 
-<!-- RAKETER -->
-<section id="raketer" class="card hidden">
-  <h2>🚀 Zylos Raketer</h2>
+function closeAllSections() {
+  document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
+}
 
-  <div class="tooltip">
-    <div class="item">🎆 Hover över mig</div>
-    <span class="tooltiptext">
-      Coords: -146 68 63<br>
-      "Stället du köper dina raketer!"
-    </span>
-  </div>
+function openSection(id) {
+  closeAllSections();
+  document.getElementById(id).classList.remove("hidden");
+  document.getElementById("dropdown").classList.add("hidden");
+}
 
-  <h3>⭐ Reviews</h3>
-  <div id="reviewList"></div>
+/* =========================
+   REVIEWS SYSTEM (GLOBAL)
+========================= */
+async function loadReviews() {
+  try {
+    const res = await fetch(API_URL + "/reviews");
+    reviews = await res.json();
+  } catch (e) {
+    reviews = [];
+  }
 
-  <div class="review-box">
-    <select id="stars">
-      <option value="5">★★★★★</option>
-      <option value="4">★★★★☆</option>
-      <option value="3">★★★☆☆</option>
-      <option value="2">★★☆☆☆</option>
-      <option value="1">★☆☆☆☆</option>
-    </select>
+  renderReviews();
+}
 
-    <input id="reviewText" placeholder="Skriv din review...">
-    <button onclick="addReview()">Skicka</button>
-  </div>
-</section>
+function renderReviews() {
+  const container = document.getElementById("reviewList");
+  const all = document.getElementById("allReviews");
 
-<!-- ORDER -->
-<section id="order" class="card hidden">
-  <h2>📦 Beställning</h2>
+  const html = reviews.map(r => `
+    <div class="mc-item">
+      ⭐ ${"★".repeat(r.stars)}${"☆".repeat(5 - r.stars)}<br>
+      ${escape(r.text)}
+    </div>
+  `).join("");
 
-  <input id="item" placeholder="Vad vill du beställa?">
-  <input id="amount" placeholder="Antal">
-  <input id="discord" placeholder="Discord namn">
-  <input id="mc" placeholder="Minecraft namn">
-  <input id="deadline" placeholder="Deadline">
+  if (container) container.innerHTML = html;
+  if (all) all.innerHTML = html;
+}
 
-  <button onclick="sendOrder()">Skicka beställning</button>
+/* =========================
+   ADD REVIEW (GLOBAL SAVE)
+========================= */
+async function addReview() {
+  const stars = Number(document.getElementById("stars").value);
+  const text = document.getElementById("reviewText").value.trim();
 
-  <p id="orderStatus"></p>
-</section>
+  if (!text) return;
 
-<!-- REVIEWS -->
-<section id="reviews" class="card hidden">
-  <h2>💬 Alla Reviews</h2>
-  <div id="allReviews"></div>
-</section>
+  const review = { stars, text, time: Date.now() };
 
-<script src="script.js"></script>
-</body>
-</html>
+  await fetch(API_URL + "/reviews", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(review)
+  });
+
+  document.getElementById("reviewText").value = "";
+  loadReviews();
+}
+
+/* =========================
+   ORDER SYSTEM
+========================= */
+async function sendOrder() {
+  const data = {
+    item: item.value,
+    amount: amount.value,
+    discord: discord.value,
+    mc: mc.value,
+    deadline: deadline.value
+  };
+
+  document.getElementById("orderStatus").innerText =
+    "Din beställning måste godkännas av Abbe eller Theo. Du får DM snart.";
+
+  await fetch("/api/order", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+}
+
+/* =========================
+   UTIL
+========================= */
+function escape(str) {
+  return str
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
