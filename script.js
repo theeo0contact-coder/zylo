@@ -1,282 +1,56 @@
-let stars=5;
-
-let reviews=[];
-
-const webhookURL=
-"KLISTRA_WEBHOOK_HÄR";
-
-function openTab(tab){
-
-document
-.querySelectorAll(
-".tab"
-)
-.forEach(
-
-x=>
-x.style.display=
-"none"
-
-);
-
-document
-.getElementById(
-tab
-)
-.style.display=
-"block";
-
+function toggleDropdown() {
+  document.getElementById("dropdown").classList.toggle("hidden");
 }
 
-function rate(v){
-
-stars=v;
-
+function openSection(id) {
+  document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
 }
 
-function leaveReview(){
+/* REVIEWS (local storage) */
+function addReview() {
+  const stars = document.getElementById("stars").value;
+  const text = document.getElementById("reviewText").value;
 
-let text=
-document
-.getElementById(
-"reviewText"
-)
-.value;
+  const review = { stars, text };
 
-if(!text){
+  let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+  reviews.push(review);
+  localStorage.setItem("reviews", JSON.stringify(reviews));
 
-return;
-
+  loadReviews();
 }
 
-reviews.push({
+function loadReviews() {
+  let reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
 
-stars,
-text
+  let html = "";
+  reviews.forEach(r => {
+    html += `<div class="card">⭐ ${r.stars}<br>${r.text}</div>`;
+  });
 
-});
-
-renderReviews();
-
-document
-.getElementById(
-"reviewText"
-)
-.value="";
-
+  document.getElementById("reviewList").innerHTML = html;
+  document.getElementById("allReviews").innerHTML = html;
 }
 
-function renderReviews(){
+loadReviews();
 
-let box=
-document
-.getElementById(
-"reviewList"
-);
+/* ORDER SYSTEM */
+async function sendOrder() {
+  const data = {
+    item: document.getElementById("item").value,
+    amount: document.getElementById("amount").value,
+    discord: document.getElementById("discord").value,
+    mc: document.getElementById("mc").value,
+    deadline: document.getElementById("deadline").value
+  };
 
-box.innerHTML="";
+  document.getElementById("orderStatus").innerText =
+    "Din beställning måste godkännas av Abbe eller Theo. Du kommer få DM snart.";
 
-let total=0;
-
-reviews.forEach(
-
-r=>{
-
-total+=r.stars;
-
-box.innerHTML+=`
-
-<div class="review">
-
-${"⭐".repeat(
-r.stars
-)}
-
-<br>
-
-${r.text}
-
-</div>
-
-`;
-
+  await fetch("/api/order", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
 }
-
-);
-
-let avg=
-
-reviews.length
-
-?
-
-(
-total
-/
-reviews.length
-)
-
-.toFixed(1)
-
-:
-
-0;
-
-document
-.getElementById(
-"reviewStats"
-)
-.innerHTML=
-
-`
-⭐ ${avg}
-<br>
-Reviews:
-${reviews.length}
-`;
-
-}
-
-async function submitOrder(){
-
-let item=
-
-document
-.getElementById(
-"customItem"
-)
-.value
-
-||
-
-document
-.getElementById(
-"itemSelect"
-)
-.value;
-
-let discord=
-
-document
-.getElementById(
-"discordName"
-)
-.value;
-
-let mc=
-
-document
-.getElementById(
-"mcName"
-)
-.value;
-
-let amount=
-
-document
-.getElementById(
-"amount"
-)
-.value;
-
-let deadline=
-
-document
-.getElementById(
-"deadline"
-)
-.value;
-
-let embed={
-
-embeds:[{
-
-title:
-
-"🚀 Zylo Order",
-
-color:
-
-65280,
-
-fields:[
-
-{
-name:"Discord",
-value:discord
-},
-
-{
-name:"Minecraft",
-value:mc
-},
-
-{
-name:"Produkt",
-value:item
-},
-
-{
-name:"Antal",
-value:amount
-},
-
-{
-name:"Deadline",
-value:deadline
-}
-
-],
-
-footer:{
-
-text:
-
-"Beställningen granskas av Zylo teamet"
-
-}
-
-}]
-
-};
-
-await fetch(
-
-webhookURL,
-
-{
-
-method:
-
-"POST",
-
-headers:{
-
-"Content-Type":
-"application/json"
-
-},
-
-body:
-
-JSON.stringify(
-embed
-)
-
-}
-
-);
-
-alert(
-"Beställning skickad!"
-);
-
-}
-
-window.onload=()=>{
-
-openTab(
-"product"
-);
-
-};
