@@ -11,11 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
 function openSection(id) {
   document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
   document.getElementById(id).classList.remove("hidden");
-
   addXp(2);
 }
 
-/* REVIEWS (GLOBAL VIA API) */
+/* REVIEWS (GLOBAL SYSTEM - SIMPLE API) */
 async function loadReviews() {
   try {
     const res = await fetch("https://YOUR_API_URL/reviews");
@@ -27,19 +26,21 @@ async function loadReviews() {
 }
 
 function renderReviews() {
-  const html = reviews.map(r => `
+  const box = document.getElementById("reviewList");
+
+  if (!box) return;
+
+  box.innerHTML = reviews.map(r => `
     <div class="mc-item">
       ⭐ ${"★".repeat(r.stars)}${"☆".repeat(5 - r.stars)}<br>
-      ${escape(r.text)}
+      ${escapeHtml(r.text)}
     </div>
   `).join("");
-
-  document.getElementById("reviewList").innerHTML = html;
 }
 
 async function addReview() {
-  const stars = Number(document.getElementById("stars").value);
-  const text = document.getElementById("reviewText").value;
+  const stars = +document.getElementById("stars").value;
+  const text = document.getElementById("reviewText").value.trim();
 
   if (!text) return;
 
@@ -89,7 +90,7 @@ function addXp(amount) {
   }
 }
 
-/* UTIL */
-function escape(str) {
+/* SAFE TEXT */
+function escapeHtml(str) {
   return str.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 }
