@@ -1,60 +1,36 @@
-let stars = 5;
-let reviews = [];
+let stars=5;
 
-const webhookURL =
-"KLISTRA_IN_DIN_WEBHOOK_HÄR";
+let reviews=[];
 
-let selectedItem = "Firework Rocket";
+const webhookURL=
+"KLISTRA_WEBHOOK_HÄR";
 
-function openTab(tab) {
-
-document
-.querySelectorAll(".tab")
-.forEach(x => {
-x.style.display = "none";
-});
+function openTab(tab){
 
 document
-.getElementById(tab)
-.style.display =
+.querySelectorAll(
+".tab"
+)
+.forEach(
+
+x=>
+x.style.display=
+"none"
+
+);
+
+document
+.getElementById(
+tab
+)
+.style.display=
 "block";
 
 }
 
-function selectItem(item) {
+function rate(v){
 
-selectedItem = item;
-
-document
-.getElementById(
-"selectedItem"
-)
-.innerText =
-item;
-
-openTab("order");
-
-}
-
-function rate(value){
-
-stars=value;
-
-let row=
-document
-.querySelectorAll(
-"#stars span"
-);
-
-row.forEach(
-(s,index)=>{
-
-s.style.opacity=
-index<value
-?1
-:0.3;
-
-});
+stars=v;
 
 }
 
@@ -65,14 +41,9 @@ document
 .getElementById(
 "reviewText"
 )
-.value
-.trim();
+.value;
 
 if(!text){
-
-alert(
-"Skriv en review först"
-);
 
 return;
 
@@ -107,7 +78,9 @@ box.innerHTML="";
 
 let total=0;
 
-reviews.forEach(r=>{
+reviews.forEach(
+
+r=>{
 
 total+=r.stars;
 
@@ -115,75 +88,72 @@ box.innerHTML+=`
 
 <div class="review">
 
-${"⭐".repeat(r.stars)}
+${"⭐".repeat(
+r.stars
+)}
 
-<div>
+<br>
 
 ${r.text}
 
 </div>
 
-</div>
-
 `;
 
-});
+}
+
+);
 
 let avg=
+
 reviews.length
+
 ?
+
 (
-total/
+total
+/
 reviews.length
 )
+
 .toFixed(1)
+
 :
+
 0;
 
 document
 .getElementById(
 "reviewStats"
 )
-.innerHTML=`
+.innerHTML=
 
-⭐ Snitt:
-${avg}
-
+`
+⭐ ${avg}
 <br>
-
-📝 Totalt:
+Reviews:
 ${reviews.length}
-
 `;
 
 }
 
 async function submitOrder(){
 
-let dropdown=
-
-document
-.getElementById(
-"itemSelect"
-)
-.value;
-
-let custom=
+let item=
 
 document
 .getElementById(
 "customItem"
 )
 .value
-.trim();
 
-let item=
+||
 
-custom
-||
-dropdown
-||
-selectedItem;
+document
+.getElementById(
+"itemSelect"
+)
+.value;
 
 let discord=
 
@@ -217,95 +187,43 @@ document
 )
 .value;
 
-if(
-
-!discord||
-!mc||
-!amount||
-!deadline
-
-){
-
-alert(
-"Fyll i alla fält!"
-);
-
-return;
-
-}
-
 let embed={
 
-embeds:[
-
-{
+embeds:[{
 
 title:
-"🚀 Ny Zylo Beställning",
 
-description:
-"Ny order från hemsidan",
+"🚀 Zylo Order",
 
 color:
-3066993,
 
-thumbnail:{
-
-url:
-"https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/e5/Firework_Rocket_JE2_BE2.png"
-
-},
+65280,
 
 fields:[
 
 {
-name:
-"👤 Discord",
-
-value:
-discord,
-
-inline:true
+name:"Discord",
+value:discord
 },
 
 {
-name:
-"⛏ Minecraft",
-
-value:
-mc,
-
-inline:true
+name:"Minecraft",
+value:mc
 },
 
 {
-name:
-"📦 Produkt",
-
-value:
-item,
-
-inline:false
+name:"Produkt",
+value:item
 },
 
 {
-name:
-"🔢 Antal",
-
-value:
-amount,
-
-inline:true
+name:"Antal",
+value:amount
 },
 
 {
-name:
-"⏰ Senast",
-
-value:
-deadline,
-
-inline:true
+name:"Deadline",
+value:deadline
 }
 
 ],
@@ -313,17 +231,14 @@ inline:true
 footer:{
 
 text:
-"OBS! Beställningen måste granskas av Zylo teamet. Du får DM om vi kan fixa detta."
+
+"Beställningen granskas av Zylo teamet"
 
 }
 
-}
-
-]
+}]
 
 };
-
-try{
 
 await fetch(
 
@@ -332,6 +247,7 @@ webhookURL,
 {
 
 method:
+
 "POST",
 
 headers:{
@@ -342,6 +258,7 @@ headers:{
 },
 
 body:
+
 JSON.stringify(
 embed
 )
@@ -354,23 +271,6 @@ alert(
 "Beställning skickad!"
 );
 
-document
-.querySelectorAll(
-"input"
-)
-.forEach(
-x=>x.value=""
-);
-
-}
-catch{
-
-alert(
-"Kunde inte skicka."
-);
-
-}
-
 }
 
 window.onload=()=>{
@@ -378,7 +278,5 @@ window.onload=()=>{
 openTab(
 "product"
 );
-
-renderReviews();
 
 };
