@@ -1,170 +1,79 @@
 <!DOCTYPE html>
 <html lang="sv">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1">
-
-<title>Zylo</title>
-
-<link
-rel="stylesheet"
-href="style.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zylo - Minecraft Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
+<div class="bg"></div>
+
 <header>
-
-<h1>🚀 ZYLO</h1>
-
-<p>
-Minecraft Shop
-</p>
-
+  <h1>⛏ ZYLO HUB</h1>
+  <p>Minecraft-inspirerad beställning & reviews</p>
 </header>
 
-<div class="mc-menu">
+<nav>
+  <button onclick="toggleDropdown()">☰ Meny</button>
+  <div id="dropdown" class="dropdown hidden">
+    <button onclick="openSection('raketer')">Zylos Raketer</button>
+    <button onclick="openSection('order')">Beställning</button>
+    <button onclick="openSection('reviews')">Reviews</button>
+  </div>
+</nav>
 
-<button onclick="openTab('product')">
-💥 Zylos Raketer
-</button>
+<!-- RAKETER -->
+<section id="raketer" class="card hidden">
+  <h2>🚀 Zylos Raketer</h2>
 
-<button onclick="openTab('order')">
-🛒 Beställning
-</button>
+  <div class="tooltip">
+    <div class="item">🎆 Hover över mig</div>
+    <span class="tooltiptext">
+      Coords: -146 68 63<br>
+      "Stället du köper dina raketer!"
+    </span>
+  </div>
 
-</div>
+  <h3>⭐ Reviews</h3>
+  <div id="reviewList"></div>
 
-<!-- PRODUKT -->
+  <div class="review-box">
+    <select id="stars">
+      <option value="5">★★★★★</option>
+      <option value="4">★★★★☆</option>
+      <option value="3">★★★☆☆</option>
+      <option value="2">★★☆☆☆</option>
+      <option value="1">★☆☆☆☆</option>
+    </select>
 
-<section
-id="product"
-class="tab">
-
-<h2>
-💥 Zylos Raketer
-</h2>
-
-<div class="coords">
-
-📍 Cords
-
--146 68 63
-
-</div>
-
-<h3>
-Reviews
-</h3>
-
-<div id="stars">
-
-<span onclick="rate(1)">⭐</span>
-<span onclick="rate(2)">⭐</span>
-<span onclick="rate(3)">⭐</span>
-<span onclick="rate(4)">⭐</span>
-<span onclick="rate(5)">⭐</span>
-
-</div>
-
-<textarea
-id="reviewText"
-placeholder="Skriv review">
-</textarea>
-
-<button onclick="leaveReview()">
-
-Skicka review
-
-</button>
-
-<div id="reviewStats"></div>
-
-<div id="reviewList"></div>
-
+    <input id="reviewText" placeholder="Skriv din review...">
+    <button onclick="addReview()">Skicka</button>
+  </div>
 </section>
 
 <!-- ORDER -->
+<section id="order" class="card hidden">
+  <h2>📦 Beställning</h2>
 
-<section
-id="order"
-class="tab">
+  <input id="item" placeholder="Vad vill du beställa?">
+  <input id="amount" placeholder="Antal">
+  <input id="discord" placeholder="Discord namn">
+  <input id="mc" placeholder="Minecraft namn">
+  <input id="deadline" placeholder="Deadline">
 
-<h2>
+  <button onclick="sendOrder()">Skicka beställning</button>
 
-🛒 Beställning
+  <p id="orderStatus"></p>
+</section>
 
-</h2>
-
-<p>
-
-Vald:
-
-<b id="selectedItem">
-
-Firework Rocket
-
-</b>
-
-</p>
-
-<select id="itemSelect">
-
-<option>
-Firework Rocket
-</option>
-
-<option>
-Diamond
-</option>
-
-<option>
-Netherite
-</option>
-
-<option>
-Elytra Repair
-</option>
-
-</select>
-
-<input
-id="customItem"
-placeholder="Skriv vad du vill beställa">
-
-<input
-id="discordName"
-placeholder="Discord namn">
-
-<input
-id="mcName"
-placeholder="Minecraft namn">
-
-<input
-id="amount"
-type="number"
-placeholder="Antal">
-
-<input
-id="deadline"
-placeholder="När behövs det">
-
-<button onclick="submitOrder()">
-
-✔ Skicka
-
-</button>
-
+<!-- REVIEWS -->
+<section id="reviews" class="card hidden">
+  <h2>💬 Alla Reviews</h2>
+  <div id="allReviews"></div>
 </section>
 
 <script src="script.js"></script>
-
 </body>
-
 </html>
