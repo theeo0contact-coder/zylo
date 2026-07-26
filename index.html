@@ -1,734 +1,480 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Inter',sans-serif;
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Vexvision Song Contest 2026</title>
 
-html{
-    scroll-behavior:smooth;
-}
+<link rel="stylesheet" href="style.css">
 
+</head>
 
-body{
 
-    background:#050816;
-    color:white;
-    overflow-x:hidden;
+<body>
 
-}
 
+<!-- NAVBAR -->
 
-/* =====================
- NAVBAR
-===================== */
+<nav>
 
+<div class="logo">
+    <img src="VVSCLogo26.png" alt="VVSC Logo">
+</div>
 
-nav{
 
-    position:fixed;
+<ul>
 
-    top:0;
-    left:0;
+<li><a href="index.html">Home</a></li>
+<li><a href="#countries">Countries</a></li>
+<li><a href="vote.html">Vote</a></li>
+<li><a href="odds.html">Odds</a></li>
+<li><a href="results.html">Results</a></li>
 
-    width:100%;
-    height:90px;
+</ul>
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
 
-    padding:0 70px;
+</nav>
 
-    z-index:100;
 
-    background:rgba(5,8,22,.45);
 
-    backdrop-filter:blur(15px);
 
-    border-bottom:
-    1px solid rgba(255,255,255,.1);
 
-}
+<!-- HERO SECTION -->
 
 
-.logo{
+<section class="hero">
 
-    font-size:32px;
 
-    font-weight:900;
+<div class="hero-glow"></div>
 
-    letter-spacing:3px;
 
-    background:
-    linear-gradient(
-        90deg,
-        white,
-        #ffd700
-    );
+<div class="hero-content">
 
-    -webkit-background-clip:text;
 
-    color:transparent;
+<h1>
+Vexvision Song Contest
+</h1>
 
-}
 
+<h2>
+2026
+</h2>
 
 
-nav ul{
+<p>
+Many voices. One stage. One winner.
+</p>
 
-    display:flex;
 
-    gap:35px;
+<div class="hero-buttons">
 
-    list-style:none;
+<a href="vote.html">
+<button class="main-btn">
+Vote Now
+</button>
+</a>
 
-}
 
+<a href="#countries">
+<button class="second-btn">
+Explore Countries
+</button>
+</a>
 
 
-nav a{
+</div>
 
-    color:white;
 
-    text-decoration:none;
+</div>
 
-    font-weight:600;
 
-    transition:.3s;
+</section>
 
-}
 
 
 
-nav a:hover{
 
-    color:#ffd700;
 
-}
 
+<!-- NEWS -->
 
 
-/* =====================
- HERO
-===================== */
+<section class="news">
 
 
-.hero{
+<h2>
+Latest News
+</h2>
 
-    height:100vh;
 
-    display:flex;
+<div class="news-container">
 
-    align-items:center;
 
-    justify-content:center;
+<div class="news-card">
 
-    text-align:center;
+<h3>
+Vexvision 2026 announced
+</h3>
 
-    position:relative;
+<p>
+The biggest Vexvision edition is coming soon.
+</p>
 
-    overflow:hidden;
+</div>
 
-}
 
 
+<div class="news-card">
 
-.light{
+<h3>
+Countries revealed
+</h3>
 
-    position:absolute;
+<p>
+31 countries will compete for victory.
+</p>
 
-    width:600px;
+</div>
 
-    height:600px;
 
-    border-radius:50%;
 
-    filter:blur(120px);
 
-    opacity:.35;
+<div class="news-card">
 
-    animation:move 10s infinite alternate;
+<h3>
+Voting opens soon
+</h3>
 
-}
+<p>
+Fans around the world will choose their winner.
+</p>
 
+</div>
 
 
-.light.one{
+</div>
 
-    background:#ff0080;
 
-    top:-200px;
+</section>
 
-    left:-200px;
 
-}
 
 
 
-.light.two{
 
-    background:#0055ff;
 
-    bottom:-200px;
 
-    right:-200px;
+<!-- COUNTRIES -->
 
-}
 
+<section id="countries" class="countries">
 
 
-@keyframes move{
+<h2>
+Participating Countries
+</h2>
 
-    from{
-        transform:translate(0);
-    }
 
-    to{
-        transform:translate(150px,100px);
-    }
+<p class="subtitle">
+Swipe through the competing nations
+</p>
 
-}
 
 
+<div class="country-slider">
 
 
-.hero-content{
 
-    z-index:2;
+<div class="country-card">
 
-}
+<div class="flag">
+🇸🇪
+</div>
 
+<h3>
+Sweden
+</h3>
 
+<p>
+Artist TBA
+</p>
 
-.hero h1{
+</div>
 
-    font-size:80px;
 
-    font-weight:900;
 
-    letter-spacing:-3px;
 
-    background:
-    linear-gradient(
-        white,
-        #ffd700
-    );
+<div class="country-card">
 
-    -webkit-background-clip:text;
+<div class="flag">
+🇫🇮
+</div>
 
-    color:transparent;
+<h3>
+Finland
+</h3>
 
-}
+<p>
+Artist TBA
+</p>
 
+</div>
 
 
-.hero h2{
 
-    margin-top:20px;
 
-    font-size:30px;
+<div class="country-card">
 
-}
+<div class="flag">
+🇫🇷
+</div>
 
+<h3>
+France
+</h3>
 
+<p>
+Artist TBA
+</p>
 
-.hero p{
+</div>
 
-    margin-top:20px;
 
-    color:#aaa;
 
-    font-size:18px;
 
-}
 
+<div class="country-card">
 
+<div class="flag">
+🇳🇴
+</div>
 
+<h3>
+Norway
+</h3>
 
-.buttons{
+<p>
+Artist TBA
+</p>
 
-    margin-top:45px;
+</div>
 
-    display:flex;
 
-    justify-content:center;
 
-    gap:20px;
 
-}
 
+<div class="country-card">
 
+<div class="flag">
+🇬🇧
+</div>
 
-button{
+<h3>
+United Kingdom
+</h3>
 
-    padding:16px 35px;
+<p>
+Artist TBA
+</p>
 
-    border-radius:50px;
+</div>
 
-    border:none;
 
-    cursor:pointer;
 
-    font-weight:700;
+<div class="country-card">
 
-    transition:.3s;
+<div class="flag">
+🇺🇸
+</div>
 
-}
+<h3>
+United States
+</h3>
 
+<p>
+Artist TBA
+</p>
 
+</div>
 
-button:hover{
 
-    transform:translateY(-5px);
 
-}
+</div>
 
 
+</section>
 
-.primary{
 
-    background:#ffd700;
 
-    color:black;
 
-}
 
 
 
-.secondary{
+<!-- FEATURED -->
 
-    background:
-    rgba(255,255,255,.1);
 
-    color:white;
+<section class="featured">
 
-    border:
-    1px solid rgba(255,255,255,.3);
 
-}
+<h2>
+Featured
+</h2>
 
 
+<div class="featured-box">
 
 
+<div>
 
-/* =====================
- GENERAL SECTIONS
-===================== */
+<h3>
+Artists
+</h3>
 
+<p>
+Discover this year's performers.
+</p>
 
-section{
+</div>
 
-    padding:100px 50px;
 
-}
 
+<div>
 
+<h3>
+Songs
+</h3>
 
-section h2{
+<p>
+Listen to the competing entries.
+</p>
 
-    text-align:center;
+</div>
 
-    font-size:45px;
 
-    margin-bottom:30px;
 
-}
+<div>
 
+<h3>
+Results
+</h3>
 
+<p>
+Follow the live scoreboard.
+</p>
 
+</div>
 
 
-/* =====================
- COUNTDOWN
-===================== */
+</div>
 
 
-.countdown{
+</section>
 
-    background:#080d24;
 
-    text-align:center;
 
-}
 
 
 
-.timer{
 
-    display:flex;
 
-    justify-content:center;
+<!-- FOOTER -->
 
-    gap:25px;
 
-    flex-wrap:wrap;
+<footer>
 
-    margin-top:50px;
 
-}
+<div class="footer-content">
 
 
 
-.timer div{
+<div class="footer-brand">
 
-    background:
-    rgba(255,255,255,.08);
+<img src="VVSCLogo26.png">
 
-    padding:30px;
 
-    width:130px;
+<p>
+Vexvision Song Contest 2026
+</p>
 
-    border-radius:20px;
 
-    border:
-    1px solid rgba(255,255,255,.1);
+</div>
 
-}
 
 
 
-.timer h1{
 
-    color:#ffd700;
+<div>
 
-    font-size:45px;
+<h3>
+Contest
+</h3>
 
-}
+<a href="#countries">
+Countries
+</a>
 
+<a href="vote.html">
+Vote
+</a>
 
+<a href="odds.html">
+Odds
+</a>
 
+<a href="results.html">
+Results
+</a>
 
-/* =====================
- COUNTRIES
-===================== */
+</div>
 
 
-.country-grid,
-.mini-countries{
 
-    display:grid;
 
-    grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
 
-    gap:25px;
+<div>
 
-    margin-top:50px;
+<h3>
+Social
+</h3>
 
-}
+<a href="#">
+TikTok
+</a>
 
+<a href="#">
+Instagram
+</a>
 
+<a href="#">
+YouTube
+</a>
 
-.country-card,
-.mini-country-card{
+<a href="#">
+Discord
+</a>
 
-    background:
-    rgba(255,255,255,.08);
+</div>
 
-    padding:30px;
 
-    border-radius:20px;
 
-    text-align:center;
+</div>
 
-    transition:.3s;
 
-}
 
 
+<div class="copyright">
 
-.country-card:hover,
-.mini-country-card:hover{
+© 2026 Vexvision Song Contest. All rights reserved.
 
-    background:#ffd700;
+</div>
 
-    color:black;
 
-    transform:translateY(-10px);
+</footer>
 
-}
 
 
-
-
-/* SEARCH */
-
-
-.search-box{
-
-    text-align:center;
-
-}
-
-
-
-.search-box input{
-
-    width:350px;
-
-    max-width:90%;
-
-    padding:18px 25px;
-
-    border-radius:50px;
-
-    border:none;
-
-    outline:none;
-
-    font-size:16px;
-
-}
-
-
-
-
-
-/* =====================
- NEWS
-===================== */
-
-
-.news{
-
-    background:#080d24;
-
-}
-
-
-
-.news-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
-
-    gap:30px;
-
-}
-
-
-
-.news-card{
-
-    padding:35px;
-
-    border-radius:20px;
-
-    background:
-    rgba(255,255,255,.08);
-
-}
-
-
-
-.news-card h3{
-
-    color:#ffd700;
-
-    margin-bottom:15px;
-
-}
-
-
-
-
-
-/* =====================
- SPONSORS
-===================== */
-
-
-.sponsor-box{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:30px;
-
-    flex-wrap:wrap;
-
-}
-
-
-
-.sponsor-box div{
-
-    width:250px;
-
-    height:100px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:
-    rgba(255,255,255,.08);
-
-    border-radius:20px;
-
-    font-size:22px;
-
-    font-weight:800;
-
-}
-
-
-
-
-
-/* =====================
- SOCIALS
-===================== */
-
-
-.social-buttons{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:20px;
-
-    flex-wrap:wrap;
-
-}
-
-
-
-.social-buttons a{
-
-    background:
-    rgba(255,255,255,.1);
-
-    padding:15px 35px;
-
-    border-radius:50px;
-
-    color:white;
-
-    text-decoration:none;
-
-}
-
-
-
-.social-buttons a:hover{
-
-    background:#ffd700;
-
-    color:black;
-
-}
-
-
-
-
-
-/* =====================
- FOOTER
-===================== */
-
-
-footer{
-
-    background:#02030b;
-
-    padding:50px;
-
-    text-align:center;
-
-}
-
-
-
-.footer-logo{
-
-    color:#ffd700;
-
-    font-size:35px;
-
-    font-weight:900;
-
-}
-
-
-
-.footer-links{
-
-    margin-top:25px;
-
-}
-
-
-
-.footer-links a{
-
-    color:white;
-
-    margin:15px;
-
-    text-decoration:none;
-
-}
-
-
-
-
-
-/* =====================
- MOBILE
-===================== */
-
-
-@media(max-width:900px){
-
-
-nav{
-
-    padding:0 25px;
-
-}
-
-
-nav ul{
-
-    display:none;
-
-}
-
-
-
-.hero h1{
-
-    font-size:45px;
-
-}
-
-
-
-.hero h2{
-
-    font-size:22px;
-
-}
-
-
-
-section{
-
-    padding:70px 20px;
-
-}
-
-
-}
+</body>
+</html>
