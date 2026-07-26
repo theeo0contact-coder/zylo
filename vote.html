@@ -36,31 +36,248 @@ VVSC
 
 
 
+<section class="vote-page">
 
-<section class="hero">
-
-
-<div class="hero-content">
 
 <h1>
-Vote
+VVSC Voting
 </h1>
-
-<h2>
-Vexvision Song Contest 2026
-</h2>
 
 
 <p>
-Choose your favourite country.
+Create your Eurovision-style points
 </p>
+
+
+
+<div class="voting-area">
+
+
+<div class="points">
+
+
+<h2>
+Points
+</h2>
+
+
+<button onclick="selectPoints(12)">12</button>
+<button onclick="selectPoints(10)">10</button>
+<button onclick="selectPoints(8)">8</button>
+<button onclick="selectPoints(7)">7</button>
+<button onclick="selectPoints(6)">6</button>
+<button onclick="selectPoints(5)">5</button>
+<button onclick="selectPoints(4)">4</button>
+<button onclick="selectPoints(3)">3</button>
+<button onclick="selectPoints(2)">2</button>
+<button onclick="selectPoints(1)">1</button>
 
 
 </div>
 
 
+
+
+
+<div class="countries">
+
+
+<h2>
+Countries
+</h2>
+
+
+<div id="countryList"></div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<h2>Your Scorecard</h2>
+
+<div id="scoreboard"></div>
+
+
+
 </section>
 
+
+
+
+
+
+<script>
+
+
+let selectedPoints = null;
+
+
+let votes = {};
+
+
+
+const countries = [
+
+"Åland",
+"Andorra",
+"Australia",
+"Brazil",
+"Bulgaria",
+"Canada",
+"Denmark",
+"Estonia",
+"Finland",
+"France",
+"Iceland",
+"India",
+"Ireland",
+"Ivory Coast",
+"Latvia",
+"Lithuania",
+"Malaysia",
+"Mexico",
+"Moldova",
+"Norway",
+"Palestine",
+"Philippines",
+"Poland",
+"Puerto Rico",
+"Romania",
+"Russia",
+"South Korea",
+"Sweden",
+"Switzerland",
+"United Kingdom",
+"USA"
+
+];
+
+
+
+const countryList =
+document.getElementById("countryList");
+
+
+
+countries.forEach(country=>{
+
+
+let button=document.createElement("button");
+
+
+button.innerHTML=country;
+
+
+button.onclick=()=>giveVote(country);
+
+
+countryList.appendChild(button);
+
+
+});
+
+
+
+
+
+function selectPoints(points){
+
+
+selectedPoints = points;
+
+
+alert(points+" points selected");
+
+
+}
+
+
+
+
+function giveVote(country){
+
+
+if(selectedPoints == null){
+
+alert("Choose points first!");
+
+return;
+
+}
+
+
+
+if(Object.values(votes).includes(selectedPoints)){
+
+
+alert("You already used "+selectedPoints+" points!");
+
+return;
+
+}
+
+
+
+votes[country]=selectedPoints;
+
+
+selectedPoints=null;
+
+
+updateScoreboard();
+
+
+}
+
+
+
+
+
+function updateScoreboard(){
+
+
+let box=document.getElementById("scoreboard");
+
+
+box.innerHTML="";
+
+
+Object.entries(votes)
+
+.sort((a,b)=>b[1]-a[1])
+
+.forEach(vote=>{
+
+
+let div=document.createElement("div");
+
+
+div.className="score";
+
+
+div.innerHTML=
+
+vote[0]+" - "+vote[1]+" points";
+
+
+box.appendChild(div);
+
+
+
+});
+
+
+}
+
+
+
+</script>
 
 
 </body>
