@@ -275,3 +275,76 @@ margin:20px;
 color:#aaa;
 
 }
+
+.vote-page{
+
+padding:120px 50px;
+
+text-align:center;
+
+}
+
+
+.voting-area{
+
+display:flex;
+
+justify-content:center;
+
+gap:50px;
+
+flex-wrap:wrap;
+
+margin-top:50px;
+
+}
+
+
+.points button,
+.countries button{
+
+margin:8px;
+
+padding:12px 25px;
+
+border-radius:20px;
+
+border:none;
+
+cursor:pointer;
+
+background:#ffd700;
+
+font-weight:bold;
+
+}
+
+
+
+.countries button{
+
+display:block;
+
+width:220px;
+
+background:#111827;
+
+color:white;
+
+}
+
+
+
+.score{
+
+background:#111827;
+
+padding:15px;
+
+margin:10px auto;
+
+border-radius:15px;
+
+max-width:300px;
+
+}
