@@ -1,72 +1,864 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zylo Minecraft Hub</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vexvision Song Contest 2026</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+
+body{
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+
+/* =====================
+   NAVBAR
+===================== */
+
+
+nav{
+
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:90px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 70px;
+
+    z-index:100;
+
+    background:rgba(5,8,22,0.35);
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid rgba(255,255,255,0.1);
+
+}
+
+
+.logo{
+
+    font-size:32px;
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #ffd700
+    );
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+}
+
+
+
+nav ul{
+
+    display:flex;
+    gap:35px;
+
+    list-style:none;
+
+}
+
+
+nav ul li a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+nav ul li a:hover{
+
+    color:#ffd700;
+
+}
+
+
+
+/* =====================
+   HERO
+===================== */
+
+
+.hero{
+
+    height:100vh;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+}
+
+
+/* animated lights */
+
+
+.light{
+
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.35;
+
+    animation:move 10s infinite alternate;
+
+}
+
+
+.light.one{
+
+    background:#ff0080;
+
+    top:-200px;
+    left:-200px;
+
+}
+
+
+.light.two{
+
+    background:#0055ff;
+
+    bottom:-200px;
+    right:-200px;
+
+    animation-delay:3s;
+
+}
+
+
+
+@keyframes move{
+
+    from{
+
+        transform:translate(0,0);
+
+    }
+
+    to{
+
+        transform:translate(150px,100px);
+
+    }
+
+}
+
+
+
+/* Hero content */
+
+
+.hero-content{
+
+    z-index:5;
+
+}
+
+
+
+.hero h1{
+
+    font-size:80px;
+
+    font-weight:900;
+
+    letter-spacing:-3px;
+
+
+    background:linear-gradient(
+        90deg,
+        white,
+        #ffd700
+    );
+
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+
+}
+
+
+
+.hero h2{
+
+    margin-top:20px;
+
+    font-size:28px;
+
+    color:#ddd;
+
+}
+
+
+
+.hero p{
+
+    margin-top:25px;
+
+    font-size:18px;
+
+    color:#aaa;
+
+}
+
+
+
+/* Buttons */
+
+
+.buttons{
+
+    margin-top:45px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+}
+
+
+
+button{
+
+    padding:16px 35px;
+
+    border-radius:50px;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+
+
+.primary{
+
+    background:#ffd700;
+
+    color:black;
+
+}
+
+
+
+.secondary{
+
+    background:rgba(255,255,255,.1);
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.3);
+
+}
+
+
+
+button:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 40px rgba(255,215,0,.4);
+
+}
+
+
+
+/* Bottom fade */
+
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    height:200px;
+
+
+    background:linear-gradient(
+        transparent,
+        #050816
+    );
+
+}
+
+
+
+@media(max-width:900px){
+
+
+nav{
+
+    padding:0 25px;
+
+}
+
+
+nav ul{
+
+    display:none;
+
+}
+
+
+.hero h1{
+
+    font-size:45px;
+
+}
+
+
+.hero h2{
+
+    font-size:20px;
+
+}
+
+}
+
+
+
+</style>
+
 </head>
+
+
 <body>
 
-<header>
-  <h1>⛏ Zylo Hub</h1>
-  <p>Minecraft beställningar & reviews</p>
-</header>
 
-<!-- INVENTORY MENU -->
-<div class="inventory">
-  <div class="slot" onclick="openSection('raketer')">🎆 Raketer</div>
-  <div class="slot" onclick="openSection('order')">📦 Beställning</div>
-  <div class="slot" onclick="openSection('reviews')">💬 Reviews</div>
+<!-- NAVIGATION -->
+
+<nav>
+
+<div class="logo">
+VEXVISION
 </div>
 
-<!-- XP BAR -->
-<div class="xp-wrap">
-  <div id="xpbar" class="xp-bar">Level 0</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="vote.html">Vote</a></li>
+
+<li><a href="odds.html">Odds</a></li>
+
+<li><a href="results.html">Results</a></li>
+
+</ul>
+
+
+</nav>
+
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+
+<div class="light one"></div>
+
+<div class="light two"></div>
+
+
+
+<div class="hero-content">
+
+
+<h1>
+VEXVISION
+</h1>
+
+
+<h2>
+Song Contest 2026
+</h2>
+
+
+<p>
+Many voices. One stage. One winner.
+</p>
+
+
+
+<div class="buttons">
+
+
+<button class="primary">
+Vote Now
+</button>
+
+
+<button class="secondary">
+Explore Countries
+</button>
+
+
 </div>
 
-<!-- RAKETER -->
-<section id="raketer" class="card hidden">
-  <h2>Zylos Raketer</h2>
-  <p>Coords: -146 68 63</p>
-  <p>"Stället du köper dina raketer!"</p>
+
+
+</div>
+
+
+
 </section>
 
-<!-- ORDER -->
-<section id="order" class="card hidden">
-  <h2>Beställning</h2>
 
-  <input id="item" placeholder="Vad vill du beställa?">
-  <input id="amount" placeholder="Antal">
-  <input id="discord" placeholder="Discord namn">
-  <input id="mc" placeholder="Minecraft namn">
-  <input id="deadline" placeholder="Deadline">
 
-  <button onclick="sendOrder()">Skicka</button>
-
-  <p id="orderStatus"></p>
-</section>
-
-<!-- REVIEWS -->
-<section id="reviews" class="card hidden">
-  <h2>Reviews - Zylo Raketer beställningssystem</h2>
-
-  <div class="review-box">
-    <select id="stars">
-      <option value="5">★★★★★</option>
-      <option value="4">★★★★☆</option>
-      <option value="3">★★★☆☆</option>
-      <option value="2">★★☆☆☆</option>
-      <option value="1">★☆☆☆☆</option>
-    </select>
-
-    <input id="reviewText" placeholder="Skriv review...">
-    <button onclick="addReview()">Skicka</button>
-  </div>
-
-  <div id="reviewList"></div>
-</section>
-
-<script src="script.js"></script>
 </body>
 </html>
+
+<!-- =====================
+     COUNTDOWN SECTION
+===================== -->
+
+<section class="countdown">
+
+<h2>
+The Grand Final
+</h2>
+
+<p>
+Vexvision Song Contest 2026
+</p>
+
+
+<div class="timer">
+
+<div>
+<h1 id="days">00</h1>
+<span>Days</span>
+</div>
+
+
+<div>
+<h1 id="hours">00</h1>
+<span>Hours</span>
+</div>
+
+
+<div>
+<h1 id="minutes">00</h1>
+<span>Minutes</span>
+</div>
+
+
+<div>
+<h1 id="seconds">00</h1>
+<span>Seconds</span>
+</div>
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- =====================
+     COUNTRIES
+===================== -->
+
+
+<section class="countries">
+
+
+<h2>
+Participating Countries
+</h2>
+
+
+<div class="country-grid">
+
+
+<div class="country-card">
+<span>🇦🇽</span>
+<h3>Åland</h3>
+<p>Coming soon</p>
+</div>
+
+
+<div class="country-card">
+<span>🇦🇩</span>
+<h3>Andorra</h3>
+<p>Coming soon</p>
+</div>
+
+
+<div class="country-card">
+<span>🇦🇺</span>
+<h3>Australia</h3>
+<p>Coming soon</p>
+</div>
+
+
+<div class="country-card">
+<span>🇧🇷</span>
+<h3>Brazil</h3>
+<p>Coming soon</p>
+</div>
+
+
+<div class="country-card">
+<span>🇫🇮</span>
+<h3>Finland</h3>
+<p>Coming soon</p>
+</div>
+
+
+<div class="country-card">
+<span>🇸🇪</span>
+<h3>Sweden</h3>
+<p>Coming soon</p>
+</div>
+
+
+<div class="country-card">
+<span>🇫🇷</span>
+<h3>France</h3>
+<p>Coming soon</p>
+</div>
+
+
+<div class="country-card">
+<span>🇬🇧</span>
+<h3>United Kingdom</h3>
+<p>Coming soon</p>
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- =====================
+     NEWS
+===================== -->
+
+
+<section class="news">
+
+
+<h2>
+Latest News
+</h2>
+
+
+
+<div class="news-grid">
+
+
+<div class="news-card">
+
+<h3>
+Vexvision 2026 announced
+</h3>
+
+<p>
+The biggest contest yet is coming.
+</p>
+
+</div>
+
+
+
+<div class="news-card">
+
+<h3>
+Voting opens soon
+</h3>
+
+<p>
+Fans will be able to vote for their favourites.
+</p>
+
+</div>
+
+
+
+<div class="news-card">
+
+<h3>
+Countries revealed
+</h3>
+
+<p>
+31 countries will compete for victory.
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+<!-- =====================
+     ALL COUNTRIES
+===================== -->
+
+<section class="all-countries">
+
+<h2>
+All Participating Countries
+</h2>
+
+
+<div class="mini-countries">
+
+
+<div>🇦🇽 Åland</div>
+<div>🇦🇩 Andorra</div>
+<div>🇦🇺 Australia</div>
+<div>🇧🇷 Brazil</div>
+<div>🇧🇬 Bulgaria</div>
+<div>🇨🇦 Canada</div>
+<div>🇩🇰 Denmark</div>
+<div>🇪🇪 Estonia</div>
+<div>🇫🇮 Finland</div>
+<div>🇫🇷 France</div>
+<div>🇮🇸 Iceland</div>
+<div>🇮🇳 India</div>
+<div>🇮🇪 Ireland</div>
+<div>🇨🇮 Ivory Coast</div>
+<div>🇱🇻 Latvia</div>
+<div>🇱🇹 Lithuania</div>
+<div>🇲🇾 Malaysia</div>
+<div>🇲🇽 Mexico</div>
+<div>🇲🇩 Moldova</div>
+<div>🇳🇴 Norway</div>
+<div>🇵🇸 Palestine</div>
+<div>🇵🇭 Philippines</div>
+<div>🇵🇱 Poland</div>
+<div>🇵🇷 Puerto Rico</div>
+<div>🇷🇴 Romania</div>
+<div>🇷🇺 Russia</div>
+<div>🇰🇷 South Korea</div>
+<div>🇸🇪 Sweden</div>
+<div>🇨🇭 Switzerland</div>
+<div>🇬🇧 United Kingdom</div>
+<div>🇺🇸 United States</div>
+
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- =====================
+     SPONSORS
+===================== -->
+
+
+<section class="sponsors">
+
+
+<h2>
+Official Partners
+</h2>
+
+
+<div class="sponsor-box">
+
+
+<div>
+VEXVISION
+</div>
+
+
+<div>
+PULSE TV
+</div>
+
+
+<div>
+2026 PARTNERS
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- =====================
+     SOCIALS
+===================== -->
+
+
+<section class="socials">
+
+
+<h2>
+Follow Vexvision
+</h2>
+
+
+<div class="social-buttons">
+
+
+<a href="#">
+TikTok
+</a>
+
+
+<a href="#">
+Instagram
+</a>
+
+
+<a href="#">
+YouTube
+</a>
+
+
+<a href="#">
+Discord
+</a>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- =====================
+     FOOTER
+===================== -->
+
+
+<footer>
+
+
+<div class="footer-logo">
+VEXVISION
+</div>
+
+
+<p>
+© 2026 Vexvision Song Contest.
+All rights reserved.
+</p>
+
+
+<div class="footer-links">
+
+<a href="#">Privacy</a>
+
+<a href="#">Rules</a>
+
+<a href="#">Contact</a>
+
+</div>
+
+
+</footer>
+
+<nav>
+
+<div class="logo">
+VEXVISION
+</div>
+
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="#countries">Countries</a></li>
+
+<li><a href="vote.html">Vote</a></li>
+
+<li><a href="odds.html">Odds</a></li>
+
+<li><a href="results.html">Results</a></li>
+
+</ul>
+
+</nav>
